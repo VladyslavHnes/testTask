@@ -13,6 +13,7 @@ ELK consists of three independent products:
 **Resource consumption**
 
 •***CPU** consumption can vary from 4% to 22%.*
+
 •***Memory** consumption can vary from 75% to  79%.* 
 
 # Graylog
