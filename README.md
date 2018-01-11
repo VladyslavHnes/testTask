@@ -10,7 +10,7 @@ ELK consists of three independent products:
 •	***Kibana** visualize our Elasticsearch data and navigate the Elastic Stack.*
 ![alt text](https://labs.eleks.com/wp-content/uploads/2016/12/14-elastic-stack-1.png)
 
-**Consumption**
+**Resource consumption**
 
 *CPU consumption can vary from 4% to 22%.*
 
@@ -19,7 +19,8 @@ ELK consists of three independent products:
 # Graylog
 ![alt text](http://slideplayer.com/slide/9322936/28/images/12/Architecture.jpg)
 
-**Consumption**
+**Resource consumption**
 
 *CPU consumption can vary from 0.2% to 5%.*
+
  *Memory consumption can vary from 7% to 8%.* 
