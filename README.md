@@ -1,5 +1,6 @@
 ### **ELK & Graylog comparison**
 --------------------------------
+--------------------------------
 # ELK
 ELK consists of three independent products:
 
