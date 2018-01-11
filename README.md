@@ -1,5 +1,5 @@
 ### **Overview**
-ELK is three independent products.
+ELK is three independent products:
 
 •	*Elasticsearch is a distributed, JSON-based search and analytics engine, that allows us to  store the data and search.*
 
