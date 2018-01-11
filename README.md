@@ -26,3 +26,5 @@ ELK consists of three independent products:
 • ***CPU** consumption can vary from 0.2% to 5%.*
 
 • ***Memory** consumption can vary from 7% to 8%.* 
+![alt text](https://lh3.googleusercontent.com/9BchodxRuDDjY-bUi6D2ecy8OHM3nQReHrepYI5-szB3vacojLUkjMZiy09JwJAXlNLLbST6eLsBE6iV5-bn=w1920-h949-rw)
+![alt text](https://lh3.googleusercontent.com/YYuPk3tbx06mOE9hzPi1_uW-USPsuQtSrdmMiqI_SRsscv-BA1jgSWmWSYmTYr8CVTHubJ8RkR8DdrKF6jv3=w1920-h949-rw)
