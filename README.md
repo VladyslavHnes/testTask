@@ -6,4 +6,5 @@ ELK is three independent products:
 •	*Logstash is a server-side data processing pipeline that gather data, transforms it, and then sends it to Elasticsearch.*
 
 •	*Kibana visualize our Elasticsearch data and navigate the Elastic Stack.*
+![alt text](https://labs.eleks.com/wp-content/uploads/2016/12/14-elastic-stack-1.png)
 
