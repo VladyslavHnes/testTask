@@ -9,7 +9,7 @@ ELK consists of three independent products:
 
 •	***Kibana** visualize our Elasticsearch data and navigate the Elastic Stack.*
 ![alt text](https://labs.eleks.com/wp-content/uploads/2016/12/14-elastic-stack-1.png)
-**Consumption**
+# **Consumption**
 
 # Graylog
 ![alt text](http://slideplayer.com/slide/9322936/28/images/12/Architecture.jpg)
