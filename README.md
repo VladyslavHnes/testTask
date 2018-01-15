@@ -1,31 +1,77 @@
-### **ELK & Graylog comparison**
-------------------------------
 # ELK
 ELK consists of three independent products:
 
-•	***Elasticsearch** is a distributed, JSON-based search and analytics engine, that allows your to  store the data and search.*
+•	**Elasticsearch** is a distributed, JSON-based search and analytics engine, that allows us to  store the data and search.
 
-•	***Logstash** is a server-side data processing pipeline that gather data, transforms it, and then sends it to Elasticsearch.*
+•	**Logstash** is a server-side data processing pipeline that gather data, transforms it, and then sends it to Elasticsearch.
 
-•	***Kibana** visualize your Elasticsearch data and navigate the Elastic Stack.*
-![alt text](https://labs.eleks.com/wp-content/uploads/2016/12/14-elastic-stack-1.png)
+•	**Kibana** visualize our Elasticsearch data and navigate the Elastic Stack.
 
-**Resource consumption**
+![Elk stack](elk/14-elastic-stack-1.png)
 
-• ***CPU** consumption can vary from 4% to 22%.*
+**Resource consumption:**
 
-• ***Memory** consumption can vary from 75% to  79%.* 
+![Resource consumption](elk/ELK.png)
 
-![alt text](https://lh6.googleusercontent.com/_cbT5CEj31GPXCGj8g9XG9onI94QbEz8tLMwFU_zb6ZpgsOBhOuUAbAzaRhbB1Jug3O2a_1gdrFEx1TLw6GR=w1920-h949-rw)
-![alt text](https://lh4.googleusercontent.com/XgxJD1KWVC3tuvPwVUc7xutyg9uFB3MPBF6TQT-Lw1EG-liWcrfNOTNcY7xe_fpksbBNuVlMMWfAEcuwqhDL=w1920-h949-rw)
-# Graylog
-![alt text](http://slideplayer.com/slide/9322936/28/images/12/Architecture.jpg)
+#JBoss configuration:
 
-**Resource consumption**
+**1. Module installation**
 
-• ***CPU** consumption can vary from 0.2% to 5%.*
+ Create module.xml in JBOSS_HOME\modules\org\jboss\logmanager\ext\main.
+ 
+ module.xml:
+ ```xml
+         <?xml version='1.0' encoding='UTF-8'?>
+         
+         <module xmlns="urn:jboss:module:1.1" name="org.jboss.logmanager.ext">
+         
+             <resources>
+                 <resource-root path="jboss-logmanager-ext-1.0.0.Alpha3.jar"/>
+             </resources>
+         
+             <dependencies>
+                 <module name="org.jboss.logmanager"/>
+                 <module name="javax.json.api"/>
+                 <module name="javax.xml.stream.api"/>
+             </dependencies>
+         </module>
+   ```
+ Add jboss-logmanager-ext-1.0.0.Alpha3.jar in JBOSS_HOME\modules\org\jboss\logmanager\ext\main.
+   
+**Created module**
 
-• ***Memory** consumption can vary from 7% to 8%.* 
+![module](elk/moduleImage.png)
 
-![alt text](https://lh3.googleusercontent.com/9BchodxRuDDjY-bUi6D2ecy8OHM3nQReHrepYI5-szB3vacojLUkjMZiy09JwJAXlNLLbST6eLsBE6iV5-bn=w1920-h949-rw)
-![alt text](https://lh3.googleusercontent.com/YYuPk3tbx06mOE9hzPi1_uW-USPsuQtSrdmMiqI_SRsscv-BA1jgSWmWSYmTYr8CVTHubJ8RkR8DdrKF6jv3=w1920-h949-rw)
+**2. Configuration standalone.xml**
+
+  Add the logstash formatter
+  ```xml
+        <formatter name="logstash">
+            <custom-formatter module="org.jboss.logmanager.ext" class="org.jboss.logmanager.ext.formatters.LogstashFormatter"/>
+        </formatter>
+  ```
+  
+  Add a socket-handler using the logstash formatter. Replace the hostname and port to the values needed for your logstash install
+  ```xml
+          <custom-handler name="logstash-handler" class="org.jboss.logmanager.ext.handlers.SocketHandler" module="org.jboss.logmanager.ext">
+              <formatter>
+                   <named-formatter name="logstash"/>
+              </formatter>
+                   <properties>
+                       <property name="hostname" value="localhost"/>
+                       <property name="port" value="4560"/>
+                   </properties>
+          </custom-handler>
+   ```
+   Add the new handler to the root-logger
+   ```xml
+   <handler name="logstash-handler"/>
+   ```
+#Running ELK container
+1.After that, build docker container from our elk folder.
+
+```docker build -t {your image name}```
+
+2.Run our elk container and configure ports.
+
+ ```docker run -it --rm --name {your container name} -p 4560:4560 -p 9200:9200 -p 5601:5601 {your image name}```
